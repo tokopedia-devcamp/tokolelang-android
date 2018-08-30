@@ -1,6 +1,7 @@
 package devcamp.app.tokolelang.ui.bid.create
 
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import com.github.rahatarmanahmed.cpv.CircularProgressView
 import com.google.gson.Gson
@@ -27,6 +28,18 @@ class BidCreateDialog : BaseDialog<BidCreatePresenter>(), BidCreateView {
     override fun onCreated() {
         product = Gson().fromJson(arguments?.getString("data"), Product::class.java)
         txtMinimumBid.text = RupiahConverter.convert((product.minPrice + product.nextBid).toDouble())
+        edtAmountBid.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) =
+                    edtAmountBid.setText("Rp. ${edtAmountBid.text}")
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
         onCloseDialogClicked()
         onCreateBidClicked()
     }

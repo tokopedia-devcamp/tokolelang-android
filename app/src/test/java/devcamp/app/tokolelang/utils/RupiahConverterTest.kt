@@ -10,8 +10,6 @@ import org.junit.Test
 class RupiahConverterTest {
 
     @Test
-    fun converting() {
-        print(RupiahConverter.convert((3274294).toDouble()))
-    }
+    fun converting() = print(RupiahConverter.convert((3274294).toDouble()))
 
 }

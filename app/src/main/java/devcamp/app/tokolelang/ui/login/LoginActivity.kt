@@ -4,6 +4,7 @@ import android.content.Intent
 import com.github.rahatarmanahmed.cpv.CircularProgressView
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
+import devcamp.app.tokolelang.data.model.UserRepository
 import devcamp.app.tokolelang.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -19,14 +20,32 @@ class LoginActivity: BaseActivity<LoginPresenter>(), LoginView {
     override fun loader(): CircularProgressView = header.progressBar
 
     override fun onCreated() {
-        onClick()
+        onLoginClicked()
     }
 
-    fun onClick() {
-        btnLogin.setOnClickListener{
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+    private fun onLoginClicked() = btnLogin.setOnClickListener{
+        val email = edtEmail.text.toString()
+        val password = edtPassword.text.toString()
+        if (!email.isEmpty()) {
+            txtEmail.error = null
+            txtEmail.isErrorEnabled = false
+            if (!password.isEmpty()) {
+                txtPassword.error = null
+                txtPassword.isErrorEnabled = false
+                presenter.doLogin(email, password)
+            } else {
+                txtPassword.error = getString(R.string.password_empty)
+                txtPassword.isErrorEnabled = true
+            }
+        } else {
+            txtEmail.error = getString(R.string.email_empty)
+            txtEmail.isErrorEnabled = true
         }
+    }
+
+    override fun onLoginSuccess(result: UserRepository) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 }

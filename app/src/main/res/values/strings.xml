@@ -15,4 +15,7 @@
     <string name="minimum_bid">MINIMUM BID</string>
     <string name="amount_bid">Amount</string>
     <string name="submit_bid">SUBMIT BID</string>
+    <string name="email">Email</string>
+    <string name="password_empty">password must be filled</string>
+    <string name="email_empty">email must be filled</string>
 </resources>
