@@ -37,7 +37,7 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
             itemView.txtTitle.text = productName
             itemView.txtPrice.text = price
             itemView.txtPersonTotal.text = person
-            expiredTime(Integer.valueOf(price))
+            expiredTime(Integer.valueOf(expired))
         }
 
         fun expiredTime(price: Int) {
@@ -45,6 +45,11 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
             val warning = Color.parseColor(ColorState.color(ColorState.Color.WARNING))
             val expired = Color.parseColor(ColorState.color(ColorState.Color.ERROR))
             when {
+                price == 0 || price < 0 -> { //expired
+                    itemView.imgTime.setImageResource(R.mipmap.ic_time_expired)
+                    itemView.txtExpired.text = itemView.context.getString(R.string.time_expired)
+                    itemView.txtExpired.setTextColor(expired)
+                }
                 price > 1 -> {
                     itemView.imgTime.setImageResource(R.mipmap.ic_time_normal)
                     itemView.txtExpired.text = itemView.context.getString(R.string.time_description, price.toString())
@@ -54,11 +59,6 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
                     itemView.imgTime.setImageResource(R.mipmap.ic_time_warning)
                     itemView.txtExpired.text = itemView.context.getString(R.string.time_description, price.toString())
                     itemView.txtExpired.setTextColor(warning)
-                }
-                price < 0 || price == 0 -> { //expired
-                    itemView.imgTime.setImageResource(R.mipmap.ic_time_expired)
-                    itemView.txtExpired.text = itemView.context.getString(R.string.time_expired)
-                    itemView.txtExpired.setTextColor(expired)
                 }
             }
         }
