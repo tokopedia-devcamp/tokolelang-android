@@ -5,7 +5,7 @@
     <color name="colorAccent">@color/semiBlack</color>
 
     <color name="accentOrange">#FFB236</color>
-    <color name="accentOrangeDark">#d39e00</color>
+    <color name="accentOrangeDark">#D39E00</color>
 
     <color name="redWarning">#E74C3C</color>
 

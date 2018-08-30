@@ -33,4 +33,6 @@
     <string name="select_action">Select Action</string>
     <string name="add_product">Add Product</string>
     <string name="bidder_not_found">BIDDER NOT FOUND.</string>
+    <string name="are_you_sure_bid">Are you sure you want to close this bid?</string>
+    <string name="cancel_bid">Cancel My Bid</string>
 </resources>

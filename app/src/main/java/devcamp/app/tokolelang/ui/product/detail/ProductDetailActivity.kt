@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.ui.product.detail
 
+import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -17,10 +18,13 @@ import android.os.Bundle
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import devcamp.app.tokolelang.ui.bid.create.BidCreateDialog
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import devcamp.app.tokolelang.data.model.Bidder
 import devcamp.app.tokolelang.data.model.DataRepository
+import io.isfaaghyth.rak.Rak
 import kotlinx.android.synthetic.main.layout_message.*
 
 
@@ -89,12 +93,25 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
         txtMinPrice.text = RupiahConverter.convert(product.minPrice.toDouble())
     }
 
-    private fun makeBidClicked(product: Product) = btnMakeBid.setOnClickListener {
-        val args = Bundle()
-        val createBid = BidCreateDialog().newInstance()
-        args.putString("data", Gson().toJson(product))
-        createBid.arguments = args
-        createBid.show(supportFragmentManager, "Detail")
+    private fun makeBidClicked(product: Product) = btnBid.setOnClickListener {
+        if (product.seller.id == Rak.grab("userId")) {
+            btnBid.setBackgroundColor(Color.parseColor("#FFB236"))
+            btnBid.text = getString(R.string.cancel_bid)
+            AlertDialog.Builder(this)
+                    .setTitle(R.string.app_name)
+                    .setMessage(getString(R.string.are_you_sure_bid))
+                    .setNegativeButton("NO", { _, _ ->  })
+                    .setNegativeButton("YES", { _, _ -> run {
+                        Log.e("TAG", "cancelled")
+                    } })
+                    .show()
+        } else {
+            val args = Bundle()
+            val createBid = BidCreateDialog().newInstance()
+            args.putString("data", Gson().toJson(product))
+            createBid.arguments = args
+            createBid.show(supportFragmentManager, "Detail")
+        }
     }
 
     private fun setupAppBar() {

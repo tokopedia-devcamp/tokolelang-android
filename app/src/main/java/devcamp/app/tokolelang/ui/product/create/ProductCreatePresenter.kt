@@ -35,6 +35,7 @@ class ProductCreatePresenter(view: ProductCreateView): BasePresenter<ProductCrea
     }
 
     fun onProductCategory() {
+        view().showLoading()
         subscribe(routes.getProductCategory()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
