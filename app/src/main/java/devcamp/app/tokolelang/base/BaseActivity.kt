@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.github.rahatarmanahmed.cpv.CircularProgressView
+import de.mateware.snacky.Snacky
 import devcamp.app.tokolelang.BuildConfig
 import devcamp.app.tokolelang.utils.KeyboardUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -63,21 +64,23 @@ abstract class BaseActivity<P : BasePresenter<*>>: AppCompatActivity(), BaseView
         loader().visibility = View.GONE
     }
 
-    override fun onError(message: String) {
-        Log.d(BuildConfig.APPLICATION_ID, message)
-    }
+    override fun onError(message: String?) = Snacky.builder()
+            .setActivity(this)
+            .setText(message)
+            .setDuration(Snacky.LENGTH_LONG)
+            .error()
+            .show()
 
-    override fun onError(resId: Int) {
-        Log.d(BuildConfig.APPLICATION_ID, getString(resId))
-    }
+    override fun onError(resId: Int) = onError(getString(resId))
 
-    override fun onInfo(message: String) {
-        Log.d(BuildConfig.APPLICATION_ID, message)
-    }
+    override fun onInfo(message: String?) = Snacky.builder()
+            .setActivity(this)
+            .setText(message)
+            .setDuration(Snacky.LENGTH_LONG)
+            .info()
+            .show()
 
-    override fun onInfo(resId: Int) {
-        Log.d(BuildConfig.APPLICATION_ID, getString(resId))
-    }
+    override fun onInfo(resId: Int) = onInfo(getString(resId))
 
     override fun isNetworkConnected(): Boolean? = true
 

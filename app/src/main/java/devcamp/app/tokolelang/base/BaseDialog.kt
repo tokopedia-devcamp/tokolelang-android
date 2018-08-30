@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.rahatarmanahmed.cpv.CircularProgressView
+import de.mateware.snacky.Snacky
 import devcamp.app.tokolelang.BuildConfig
 
 /**
@@ -38,21 +39,23 @@ abstract class BaseDialog<P: BasePresenter<*>>: BottomSheetDialogFragment(), Bas
         loader().visibility = View.GONE
     }
 
-    override fun onError(message: String) {
-        Log.d(BuildConfig.APPLICATION_ID, message)
-    }
+    override fun onError(message: String?) = Snacky.builder()
+            .setActivity(activity)
+            .setText(message)
+            .setDuration(Snacky.LENGTH_LONG)
+            .error()
+            .show()
 
-    override fun onError(resId: Int) {
-        Log.d(BuildConfig.APPLICATION_ID, getString(resId))
-    }
+    override fun onError(resId: Int) = onError(getString(resId))
 
-    override fun onInfo(message: String) {
-        Log.d(BuildConfig.APPLICATION_ID, message)
-    }
+    override fun onInfo(message: String?) = Snacky.builder()
+            .setActivity(activity)
+            .setText(message)
+            .setDuration(Snacky.LENGTH_LONG)
+            .info()
+            .show()
 
-    override fun onInfo(resId: Int) {
-        Log.d(BuildConfig.APPLICATION_ID, getString(resId))
-    }
+    override fun onInfo(resId: Int) = onInfo(getString(resId))
 
     override fun isNetworkConnected(): Boolean? = true
     override fun hideKeyboard() = Unit

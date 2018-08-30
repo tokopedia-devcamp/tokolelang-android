@@ -21,8 +21,12 @@ class MainPresenter(view: MainView): BasePresenter<MainView>() {
                 .subscribe(
                         { res ->
                             run {
-                                view().onGetProducts(res.data)
-                                view().hideLoading()
+                                if (res.code == 200) {
+                                    view().onGetProducts(res.data)
+                                    view().hideLoading()
+                                } else {
+                                    requestError(res.code, res.message)
+                                }
                             }
                         },
                         { err -> requestError(err) }

@@ -5,7 +5,7 @@ package devcamp.app.tokolelang.data.model
  * github: @isfaaghyth
  */
 class DataRepository<M>(
-        val code: Int?,
-        val message: String?,
+        val code: Int,
+        val message: String,
         val data: List<M>
 )

@@ -20,8 +20,12 @@ class LoginPresenter(view: LoginView): BasePresenter<LoginView>() {
                 .subscribe(
                         { res ->
                             run {
-                                view().onLoginSuccess(res)
-                                view().hideLoading()
+                                if (res.code == 200) {
+                                    view().onLoginSuccess(res)
+                                    view().hideLoading()
+                                } else {
+                                    requestError(res.code, res.message)
+                                }
                             }
                         },
                         { err -> requestError(err) }

@@ -10,9 +10,9 @@ import android.support.annotation.StringRes
 interface BaseView {
     fun showLoading()
     fun hideLoading()
-    fun onError(message: String)
+    fun onError(message: String?)
     fun onError(@StringRes resId: Int)
-    fun onInfo(message: String)
+    fun onInfo(message: String?)
     fun onInfo(@StringRes resId: Int)
     fun isNetworkConnected(): Boolean?
     fun hideKeyboard()
