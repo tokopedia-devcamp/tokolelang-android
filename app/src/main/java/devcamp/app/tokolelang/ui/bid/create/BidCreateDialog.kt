@@ -1,15 +1,22 @@
 package devcamp.app.tokolelang.ui.bid.create
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import com.github.rahatarmanahmed.cpv.CircularProgressView
 import com.google.gson.Gson
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseDialog
 import devcamp.app.tokolelang.data.model.Product
+import devcamp.app.tokolelang.ui.product.detail.ProductDetailActivity
 import devcamp.app.tokolelang.utils.RupiahConverter
+import io.isfaaghyth.rak.Rak
 import kotlinx.android.synthetic.main.dialog_bid_new.*
+import android.os.Handler
+import android.support.design.widget.BottomSheetBehavior
+import android.widget.FrameLayout
+import android.support.design.widget.BottomSheetDialog
+import android.view.ViewTreeObserver
+
+
 
 /**
  * Created by isfaaghyth on 8/30/18.
@@ -24,22 +31,12 @@ class BidCreateDialog : BaseDialog<BidCreatePresenter>(), BidCreateView {
     fun newInstance(): BidCreateDialog = BidCreateDialog()
 
     private lateinit var product: Product
+    private lateinit var userId: String
 
-    override fun onCreated() {
+    override fun onCreated(view: View) {
         product = Gson().fromJson(arguments?.getString("data"), Product::class.java)
+        userId = (Rak.grab("userId") as Int).toString()
         txtMinimumBid.text = RupiahConverter.convert((product.minPrice + product.nextBid).toDouble())
-        edtAmountBid.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) =
-                    edtAmountBid.setText("Rp. ${edtAmountBid.text}")
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-        })
         onCloseDialogClicked()
         onCreateBidClicked()
     }
@@ -48,6 +45,12 @@ class BidCreateDialog : BaseDialog<BidCreatePresenter>(), BidCreateView {
 
     private fun onCreateBidClicked() = btnBid.setOnClickListener {
         progressBar.visibility = View.VISIBLE
+        Handler().postDelayed({ onBidSuccess() }, 3000)
+    }
+
+    override fun onBidSuccess() {
+        (activity as ProductDetailActivity).getBidder()
+        dismiss()
     }
 
 }

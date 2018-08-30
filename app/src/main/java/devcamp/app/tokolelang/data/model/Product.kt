@@ -13,5 +13,6 @@ class Product(
         val nextBid: Int,
         val expired: String,
         val category: Category,
-        val seller: Seller
+        val seller: Seller,
+        val totalBidder: Int
 )

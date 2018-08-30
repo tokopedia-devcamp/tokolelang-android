@@ -38,7 +38,7 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
         fun bind(product: Product) {
             itemView.txtTitle.text = product.name
             itemView.txtPrice.text = RupiahConverter.convert((product.minPrice).toDouble())
-            itemView.txtPersonTotal.text = "0"
+            itemView.txtPersonTotal.text = product.totalBidder.toString()
             Glide.with(itemView.context)
                     .load(product.imageurl)
                     .placeholder(R.drawable.placeholder)

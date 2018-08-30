@@ -71,7 +71,7 @@ class LoginActivity: BaseActivity<LoginPresenter>(), LoginView {
 
     override fun onLoginSuccess(result: UserRepository) {
         Rak.entry("login", true)
-        Rak.entry("id", result.data.id)
+        Rak.entry("userId", result.data.id)
         Rak.entry("name", result.data.name)
         Rak.entry("email", result.data.email)
         Rak.entry("avatar", result.data.avatar)

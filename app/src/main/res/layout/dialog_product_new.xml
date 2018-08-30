@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:gravity="end|center_vertical">
+
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
+                android:id="@+id/progressBar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:cpv_animAutostart="true"
+                app:cpv_indeterminate="true" />
+
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/ic_close"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:layout_gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_image"
+                android:textAllCaps="true"
+                fontPath="fonts/OpenSans-Light.ttf"
+                android:textColor="@color/semiBlack"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/imgProduct"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_product" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="20dp"
+                    android:textColorHint="@color/grey_500"
+                    app:errorTextAppearance="@style/ErrorAppearance">
+
+                    <EditText
+                        android:id="@+id/edtProductName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        android:theme="@style/EditTextLine"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_money" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtMinPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="20dp"
+                    android:textColorHint="@color/grey_500"
+                    app:errorTextAppearance="@style/ErrorAppearance">
+
+                    <EditText
+                        android:id="@+id/edtMinPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/min_price"
+                        android:textSize="13sp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:theme="@style/EditTextLine"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_next_bid" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtNextBid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="20dp"
+                    android:textColorHint="@color/grey_500"
+                    app:errorTextAppearance="@style/ErrorAppearance">
+
+                    <EditText
+                        android:id="@+id/edtNextBid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nextbid"
+                        android:textSize="13sp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:theme="@style/EditTextLine"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_condition" />
+
+                <Spinner
+                    android:id="@+id/spinnerCondition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_category" />
+
+                <Spinner
+                    android:id="@+id/spinnerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_time_normal" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtExpired"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="20dp"
+                    android:textColorHint="@color/grey_500"
+                    app:errorTextAppearance="@style/ErrorAppearance">
+
+                    <EditText
+                        android:id="@+id/edtExpired"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/timeexpired"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        android:theme="@style/EditTextLine"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:text="@string/submit_bid"
+            fontPath="fonts/OpenSans-SemiBold.ttf"
+            android:textColor="@color/greenPrimaryPark"/>
+
+    </LinearLayout>
+
+</ScrollView>

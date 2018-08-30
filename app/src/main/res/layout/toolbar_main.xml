@@ -15,6 +15,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/tokolelang"
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:scaleType="fitStart"
@@ -26,9 +27,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="6dp"
                 android:visibility="gone"
+                android:layout_alignParentEnd="true"
                 app:cpv_animAutostart="true"
                 app:cpv_indeterminate="true" />
 

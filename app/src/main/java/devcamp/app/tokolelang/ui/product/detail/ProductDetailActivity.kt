@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.ui.product.detail
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PorterDuff
 import com.bumptech.glide.Glide
@@ -13,7 +14,14 @@ import devcamp.app.tokolelang.utils.RemainingDays
 import devcamp.app.tokolelang.utils.RupiahConverter
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import android.os.Bundle
+import android.util.Log
+import com.bumptech.glide.request.target.BitmapImageViewTarget
 import devcamp.app.tokolelang.ui.bid.create.BidCreateDialog
+import android.R.attr.resource
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable
+
+
 
 
 /**
@@ -34,20 +42,36 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
         setupAppBar()
     }
 
+    fun getBidder() {
+        Log.e("TAG", "REFRESH")
+    }
+
     private fun showProductDetail(product: Product) {
         makeBidClicked(product)
 
         txtProductName.text = product.name
         ExpiredView.expiredTime(this, txtExpired, RemainingDays.calculateFromNow(product.expired))
+        txtPersonTotal.text = product.totalBidder.toString()
 
-        txtPersonTotal.text = "0"
         Glide.with(this)
                 .load(product.imageurl)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(imgProduct)
 
-        txtHighestBid.text = "Rp. 0"
+        Glide.with(this)
+                .load(product.seller.avatar)
+                .asBitmap()
+                .centerCrop()
+                .into(object : BitmapImageViewTarget(imgAvatar) {
+                    override fun setResource(resource: Bitmap?) {
+                        val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, resource)
+                        circularBitmapDrawable.isCircular = true
+                        imgAvatar.setImageDrawable(circularBitmapDrawable)
+                    }
+                })
+
+        txtHighestBid.text = RupiahConverter.convert(product.totalBidder.toDouble())
         txtNextBid.text = RupiahConverter.convert(product.nextBid.toDouble())
         txtMinPrice.text = RupiahConverter.convert(product.minPrice.toDouble())
     }

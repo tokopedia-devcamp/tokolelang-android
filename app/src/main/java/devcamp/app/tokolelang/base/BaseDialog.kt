@@ -19,7 +19,7 @@ abstract class BaseDialog<P: BasePresenter<*>>: BottomSheetDialogFragment(), Bas
     protected lateinit var presenter: P
     protected abstract fun initPresenter(): P
     protected abstract fun contentView(): Int
-    protected abstract fun onCreated()
+    protected abstract fun onCreated(view: View)
     protected abstract fun loader(): CircularProgressView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -28,7 +28,7 @@ abstract class BaseDialog<P: BasePresenter<*>>: BottomSheetDialogFragment(), Bas
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = initPresenter()
-        onCreated()
+        onCreated(view)
     }
 
     override fun showLoading() {

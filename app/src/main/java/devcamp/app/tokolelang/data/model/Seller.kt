@@ -6,5 +6,6 @@ package devcamp.app.tokolelang.data.model
  */
 class Seller(
         val id: Int,
-        val name: String
+        val name: String,
+        val avatar: String
 )

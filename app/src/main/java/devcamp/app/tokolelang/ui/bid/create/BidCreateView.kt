@@ -7,4 +7,5 @@ import devcamp.app.tokolelang.base.BaseView
  * github: @isfaaghyth
  */
 interface BidCreateView: BaseView {
+    fun onBidSuccess()
 }
