@@ -36,6 +36,10 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun onGetProducts(products: List<Product>) {
         lstProducts.adapter = ProductAdapter(products)
     }

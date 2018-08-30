@@ -43,6 +43,10 @@ dependencies {
     //reactive
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.mlsdev.rximagepicker:library:2.1.5'
+
+    //anko
+    compile "org.jetbrains.anko:anko-commons:0.10.4"
 
     //network
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

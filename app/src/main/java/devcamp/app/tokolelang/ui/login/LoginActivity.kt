@@ -1,9 +1,15 @@
 package devcamp.app.tokolelang.ui.login
 
+import android.Manifest
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import com.github.rahatarmanahmed.cpv.CircularProgressView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
 import devcamp.app.tokolelang.data.model.UserRepository
@@ -24,6 +30,17 @@ class LoginActivity: BaseActivity<LoginPresenter>(), LoginView {
     override fun loader(): CircularProgressView = header.progressBar
 
     override fun onCreated() {
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                .withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport?) = Unit
+                    override fun onPermissionRationaleShouldBeShown(permissions: MutableList<PermissionRequest>?, token: PermissionToken?) = Unit
+                })
+                .check()
+
         onLoginClicked()
         errorWatcher()
         if (Rak.isExist("login")) {
