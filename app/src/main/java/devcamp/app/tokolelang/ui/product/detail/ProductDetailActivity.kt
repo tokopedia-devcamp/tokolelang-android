@@ -14,14 +14,14 @@ import devcamp.app.tokolelang.utils.RemainingDays
 import devcamp.app.tokolelang.utils.RupiahConverter
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import android.os.Bundle
-import android.util.Log
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import devcamp.app.tokolelang.ui.bid.create.BidCreateDialog
-import android.R.attr.resource
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable
-
-
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import devcamp.app.tokolelang.data.model.Bidder
+import devcamp.app.tokolelang.data.model.DataRepository
+import kotlinx.android.synthetic.main.layout_message.*
 
 
 /**
@@ -38,12 +38,26 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
 
     override fun onCreated() {
         product = Gson().fromJson(intent.getStringExtra("data"), Product::class.java)
+        lstBiddger.layoutManager = LinearLayoutManager(this)
+        getBidder()
         showProductDetail(product)
         setupAppBar()
     }
 
-    fun getBidder() {
-        Log.e("TAG", "REFRESH")
+    fun getBidder() = presenter.getBidders(product.productId)
+
+    override fun onGetBidders(result: DataRepository<Bidder>) {
+        when(result.code) {
+            200 -> {
+                txtHighestBid.text = RupiahConverter.convert(result.data[0].price.toDouble())
+                lstBiddger.adapter = BidderAdapter(result.data)
+                txtBidderCount.text = getString(R.string.bidder)
+            }
+            400 -> {
+                txtHighestBid.text = RupiahConverter.convert(0.toDouble())
+                txtBidderCount.text = getString(R.string.bidder_not_found)
+            }
+        }
     }
 
     private fun showProductDetail(product: Product) {
@@ -71,7 +85,6 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
                     }
                 })
 
-        txtHighestBid.text = RupiahConverter.convert(product.totalBidder.toDouble())
         txtNextBid.text = RupiahConverter.convert(product.nextBid.toDouble())
         txtMinPrice.text = RupiahConverter.convert(product.minPrice.toDouble())
     }

@@ -5,6 +5,8 @@ package devcamp.app.tokolelang.data.model
  * github: @isfaaghyth
  */
 class Bidder(
-        val fullName: String,
-        val price: String
+        val transactionId: Int,
+        val price: Int,
+        val product: ProductMinimal,
+        val bidder: BidderUser
 )

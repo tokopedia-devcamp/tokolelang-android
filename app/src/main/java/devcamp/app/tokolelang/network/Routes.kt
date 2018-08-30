@@ -2,10 +2,7 @@ package devcamp.app.tokolelang.network
 
 import devcamp.app.tokolelang.data.model.*
 import io.reactivex.Single
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by isfaaghyth on 8/29/18.
@@ -20,7 +17,7 @@ interface Routes {
     @GET("api/products")
     fun getProducts(): Single<DataRepository<Product>>
 
-    @GET("/api/product_category")
+    @GET("api/product_category")
     fun getProductCategory(): Single<DataRepository<Category>>
 
     @FormUrlEncoded @POST(("/api/products"))
@@ -33,4 +30,6 @@ interface Routes {
                     @Field("user_id") userId: String,
                     @Field("encoded_image") encodedImage: String): Single<Success>
 
+    @GET("api/tr/productid/{id}")
+    fun getBidderByProductId(@Path("id") productId: String): Single<DataRepository<Bidder>>
 }

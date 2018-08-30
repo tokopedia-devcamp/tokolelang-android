@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewMessage"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,6 +15,6 @@
         android:textColor="@color/grey_600"
         android:background="@color/grey_300"
         fontPath="fonts/OpenSans-SemiBold.ttf"
-        android:text="Message Not Found"/>
+        android:text="Data Not Found"/>
 
 </LinearLayout>

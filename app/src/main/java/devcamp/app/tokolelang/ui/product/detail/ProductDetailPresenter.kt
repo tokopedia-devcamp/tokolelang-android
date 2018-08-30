@@ -2,6 +2,8 @@ package devcamp.app.tokolelang.ui.product.detail
 
 import devcamp.app.tokolelang.base.BasePresenter
 import devcamp.app.tokolelang.data.model.Bidder
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by isfaaghyth on 8/30/18.
@@ -11,12 +13,17 @@ class ProductDetailPresenter(view: ProductDetailView): BasePresenter<ProductDeta
 
     init { super.attachView(view) }
 
-    fun getBidders(): List<Bidder> {
-        val products = arrayListOf<Bidder>()
-        products.add(Bidder("Hasby", "Rp 4566"))
-        products.add(Bidder("Sebastian", "Rp 234234"))
-        products.add(Bidder("Isfa", "Rp 345453"))
-        return products
+    fun getBidders(productId: String) {
+        view().showLoading()
+        subscribe(routes.getBidderByProductId(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    res -> run {
+                        view().hideLoading()
+                        view().onGetBidders(res)
+                    }
+                }))
     }
 
 }
