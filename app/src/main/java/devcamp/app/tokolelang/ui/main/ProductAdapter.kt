@@ -31,7 +31,7 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
 
     override fun getItemCount(): Int = products.size
 
-    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(productName: String, price: String, expired: String, person: String) {
             itemView.txtTitle.text = productName
