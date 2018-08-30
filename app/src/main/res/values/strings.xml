@@ -4,4 +4,6 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="selamat_datang">LELANG LEBIH MUDAH</string>
+    <string name="time_description">%1$s Hari lagi</string>
+    <string name="time_expired">Waktu habis</string>
 </resources>

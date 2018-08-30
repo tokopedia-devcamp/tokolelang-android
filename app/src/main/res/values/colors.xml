@@ -7,11 +7,11 @@
     <color name="accentOrange">#FFB236</color>
     <color name="accentOrangeDark">#d39e00</color>
 
-    <color name="redWarning">#e74c3c</color>
+    <color name="redWarning">#E74C3C</color>
 
     <color name="grey">#D2D6DF</color>
-
     <color name="greyBar">#898E9B</color>
+    <color name="greyDark">#474747</color>
 
     <color name="semiBlack">#34495E</color>
     <color name="white">#FFFFFF</color>

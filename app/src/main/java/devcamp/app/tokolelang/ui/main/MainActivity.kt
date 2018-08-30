@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.ui.main
 
+import android.support.v7.widget.GridLayoutManager
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -11,11 +12,10 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
     override fun contentView(): Int = R.layout.activity_main
 
     override fun onCreated() {
-        setNavigationMenu(header.toolbar, true)
-        header.txtTitle.text = getString(R.string.app_name)
-        presenter.getProduct()
+        lstProducts.layoutManager = GridLayoutManager(this, 2)
+        lstProducts.adapter = ProductAdapter(presenter.getProduct())
     }
 
-    override fun success() = onInfo("yey!")
+    override fun success() {}
 
 }
