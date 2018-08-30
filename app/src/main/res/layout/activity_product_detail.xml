@@ -9,25 +9,27 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="250dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:titleEnabled="false">
+            app:titleEnabled="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/img_background"
+                    android:id="@+id/imgProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="250dp"
                     android:src="@mipmap/ic_launcher"
                     android:scaleType="centerCrop"/>
 
@@ -55,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         fontPath="fonts/OpenSans-Light.ttf"
-                        android:textColor="@color/white"
+                        android:textColor="@color/greyDark"
                         android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
