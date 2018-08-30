@@ -32,4 +32,10 @@
         <item name="colorControlActivated">@color/greenPrimary</item>
     </style>
 
+    <style name="ErrorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/redWarning</item>
+        <item name="fontPath">fonts/OpenSans-Light.ttf</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>
