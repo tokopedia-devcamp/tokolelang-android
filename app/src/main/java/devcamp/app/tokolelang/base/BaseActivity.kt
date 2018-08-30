@@ -3,7 +3,9 @@ package devcamp.app.tokolelang.base
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.MenuItem
 import devcamp.app.tokolelang.BuildConfig
 import devcamp.app.tokolelang.utils.KeyboardUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -27,8 +29,28 @@ abstract class BaseActivity<P : BasePresenter<*>>: AppCompatActivity(), BaseView
         onCreated()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun attachBaseContext(newBase: Context?) =
             super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+
+    protected fun setNavigationMenu(toolbar: Toolbar?, isHomeDisplay: Boolean) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(isHomeDisplay)
+    }
+
+    protected fun setNavigationUp(toolbar: Toolbar?, isHomeDisplay: Boolean) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(isHomeDisplay)
+    }
 
     override fun showLoading() {
         Log.d(BuildConfig.APPLICATION_ID, "Loading")
