@@ -83,6 +83,4 @@ abstract class BaseActivity<P : BasePresenter<*>>: AppCompatActivity(), BaseView
 
     override fun hideKeyboard() = KeyboardUtils.hideSoftInput(this)
 
-    override fun getContext(): Context = applicationContext
-
 }

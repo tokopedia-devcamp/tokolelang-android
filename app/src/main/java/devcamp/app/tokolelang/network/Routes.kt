@@ -11,7 +11,7 @@ import retrofit2.http.GET
  */
 interface Routes {
 
-    @GET("products")
+    @GET("api/products")
     fun getProducts(): Single<DataRepository<Product>>
 
 }

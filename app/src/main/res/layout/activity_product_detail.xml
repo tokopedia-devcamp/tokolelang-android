@@ -288,7 +288,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/btn_claims"
+        android:id="@+id/btnMakeBid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/greenPrimary"
@@ -297,7 +297,7 @@
         app:layout_anchorGravity="top"
         android:layout_gravity="bottom"
         android:foreground="?selectableItemBackground"
-        android:text="MAKE A BID"/>
+        android:text="@string/make_bid"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

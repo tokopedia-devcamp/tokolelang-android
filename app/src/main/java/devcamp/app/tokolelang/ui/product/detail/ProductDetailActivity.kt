@@ -12,6 +12,9 @@ import devcamp.app.tokolelang.utils.ExpiredView
 import devcamp.app.tokolelang.utils.RemainingDays
 import devcamp.app.tokolelang.utils.RupiahConverter
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import android.os.Bundle
+import devcamp.app.tokolelang.ui.bid.create.BidCreateDialog
+
 
 /**
  * Created by isfaaghyth on 8/30/18.
@@ -31,7 +34,9 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
         setupAppBar()
     }
 
-    fun showProductDetail(product: Product) {
+    private fun showProductDetail(product: Product) {
+        makeBidClicked(product)
+
         txtProductName.text = product.name
         ExpiredView.expiredTime(this, txtExpired, RemainingDays.calculateFromNow(product.expired))
 
@@ -47,7 +52,15 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
         txtMinPrice.text = RupiahConverter.convert(product.minPrice.toDouble())
     }
 
-    fun setupAppBar() {
+    private fun makeBidClicked(product: Product) = btnMakeBid.setOnClickListener {
+        val args = Bundle()
+        val createBid = BidCreateDialog().newInstance()
+        args.putString("data", Gson().toJson(product))
+        createBid.arguments = args
+        createBid.show(supportFragmentManager, "Detail")
+    }
+
+    private fun setupAppBar() {
         setNavigationUp(toolbar, true)
         appBarLayout.addOnOffsetChangedListener { _, verticalOffset ->
             if (verticalOffset <= -imgProduct.height / 2) {

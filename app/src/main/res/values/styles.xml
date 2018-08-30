@@ -23,8 +23,8 @@
 
 
     <style name="PrimaryButton" parent="Theme.AppCompat">
-        <item name="colorButtonNormal">@color/accentOrange</item>
-        <item name="colorControlHighlight">@color/accentOrangeDark</item>
+        <item name="colorButtonNormal">@color/greenPrimary</item>
+        <item name="colorControlHighlight">@color/greenPrimaryPark</item>
     </style>
 
     <style name="EditTextLine">

@@ -11,4 +11,8 @@
     <string name="next_bid">NEXT BID</string>
     <string name="minimum_price">MINIMUM PRICE</string>
     <string name="bidder">BIDDER</string>
+    <string name="make_bid">MAKE A BID</string>
+    <string name="minimum_bid">MINIMUM BID</string>
+    <string name="amount_bid">Amount</string>
+    <string name="submit_bid">SUBMIT BID</string>
 </resources>

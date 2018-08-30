@@ -16,5 +16,4 @@ interface BaseView {
     fun onInfo(@StringRes resId: Int)
     fun isNetworkConnected(): Boolean?
     fun hideKeyboard()
-    fun getContext(): Context
 }
