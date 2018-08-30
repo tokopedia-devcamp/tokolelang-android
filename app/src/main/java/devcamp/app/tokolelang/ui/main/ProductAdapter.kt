@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.data.model.Product
+import devcamp.app.tokolelang.ui.product.detail.ProductDetailActivity
 import devcamp.app.tokolelang.utils.ColorState
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -38,6 +40,13 @@ class ProductAdapter(val products: List<Product>) : RecyclerView.Adapter<Product
             itemView.txtPrice.text = price
             itemView.txtPersonTotal.text = person
             expiredTime(Integer.valueOf(expired))
+            onItemClicked()
+        }
+
+        fun onItemClicked() {
+            itemView.item.setOnClickListener({
+                itemView.context.startActivity(Intent(itemView.context, ProductDetailActivity::class.java))
+            })
         }
 
         fun expiredTime(price: Int) {
