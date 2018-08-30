@@ -21,25 +21,23 @@
         android:layout_marginEnd="50dp"
         android:layout_marginTop="50dp">
 
-        <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textStyle="bold"
-            android:layout_marginStart="5dp"
-            fontPath="fonts/OpenSans-SemiBold.ttf"
-            android:textColor="@color/semiBlack"
-            android:textSize="20sp"/>
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="40sp"
+            android:scaleType="fitStart"
+            android:src="@drawable/tokolelang"
+            android:layout_marginStart="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/selamat_datang"
+            android:textStyle="bold"
+            fontPath="fonts/OpenSans-SemiBold.ttf"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/grey_500"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/grey_700"
             android:textSize="12sp"/>
 
         <android.support.design.widget.TextInputLayout
@@ -62,7 +60,7 @@
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:theme="@style/PlanetWinEdittextLine"/>
+                android:theme="@style/EditTextLine"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -87,7 +85,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:theme="@style/PlanetWinEdittextLine"/>
+                android:theme="@style/EditTextLine"/>
 
         </android.support.design.widget.TextInputLayout>
 
