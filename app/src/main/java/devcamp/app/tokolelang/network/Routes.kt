@@ -45,4 +45,17 @@ interface Routes {
             @Field("product_id") productId: String,
             @Field("price") price: String
     ): Single<Success>
+
+    @FormUrlEncoded @POST("api/winner/")
+    fun postBidWinner(
+            @Field("user_id") userId: String,
+            @Field("product_id") productId: String,
+            @Field("message") message: String,
+            @Field("price") price: String
+    ): Single<Success>
+
+    @GET("api/winner_user/{id}")
+    fun getWinnerByUserId(
+            @Path("id") userId: String
+    ): Single<DataRepository<Winner>>
 }

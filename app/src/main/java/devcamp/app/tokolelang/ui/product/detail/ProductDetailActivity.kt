@@ -24,6 +24,7 @@ import android.util.Log
 import android.view.View
 import devcamp.app.tokolelang.data.model.Bidder
 import devcamp.app.tokolelang.data.model.DataRepository
+import devcamp.app.tokolelang.data.model.Success
 import io.isfaaghyth.rak.Rak
 import kotlinx.android.synthetic.main.layout_message.*
 
@@ -41,7 +42,9 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
     private lateinit var product: Product
 
     override fun onCreated() {
+        btnRefreshBidderList.setOnClickListener { getBidder() }
         product = Gson().fromJson(intent.getStringExtra("data"), Product::class.java)
+        isMyBid()
         lstBiddger.layoutManager = LinearLayoutManager(this)
         getBidder()
         showProductDetail(product)
@@ -94,17 +97,9 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
     }
 
     private fun makeBidClicked(product: Product) = btnBid.setOnClickListener {
-        if (product.seller.id == Rak.grab("userId")) {
-            btnBid.setBackgroundColor(Color.parseColor("#FFB236"))
-            btnBid.text = getString(R.string.cancel_bid)
-            AlertDialog.Builder(this)
-                    .setTitle(R.string.app_name)
-                    .setMessage(getString(R.string.are_you_sure_bid))
-                    .setNegativeButton("NO", { _, _ ->  })
-                    .setNegativeButton("YES", { _, _ -> run {
-                        Log.e("TAG", "cancelled")
-                    } })
-                    .show()
+        val userId: Int = Rak.grab("userId")
+        if (product.seller.id == userId) {
+            cancelMyBid()
         } else {
             val args = Bundle()
             val createBid = BidCreateDialog().newInstance()
@@ -112,6 +107,41 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
             createBid.arguments = args
             createBid.show(supportFragmentManager, "Detail")
         }
+    }
+
+    private fun isMyBid() {
+        val userId: Int = Rak.grab("userId")
+        if (product.seller.id == userId) {
+            btnBid.setBackgroundColor(Color.parseColor("#FFB236"))
+            btnBid.text = getString(R.string.cancel_bid)
+        } else {
+            btnBid.setBackgroundColor(Color.parseColor("#2ECC71"))
+            btnBid.text = getString(R.string.make_bid)
+        }
+    }
+
+    private fun cancelMyBid() {
+        AlertDialog.Builder(this)
+                .setTitle(R.string.app_name)
+                .setMessage(getString(R.string.are_you_sure_bid))
+                .setNegativeButton("NO", { _, _ -> run {
+
+                } })
+                .setPositiveButton("YES", { _, _ -> run {
+                    val userId: Int = Rak.grab("userId")
+                    val finalPrice = txtHighestBid.text.toString()
+                    presenter.postWinners(
+                            userId.toString(),
+                            product.productId,
+                            "Selamat, anda menjadi top bid pada product ${product.name} dengan harga $finalPrice",
+                            finalPrice)
+                } })
+                .show()
+    }
+
+    override fun postWinnerSuccess(result: Success) {
+        onBackPressed()
+        finish()
     }
 
     private fun setupAppBar() {

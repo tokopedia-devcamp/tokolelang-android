@@ -24,6 +24,7 @@
 
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.product.detail.ProductDetailActivity"/>
+        <activity android:name=".ui.listbid.ListBidActivity"/>
 
     </application>
 

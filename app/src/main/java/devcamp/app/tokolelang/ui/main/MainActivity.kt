@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
 import devcamp.app.tokolelang.data.model.Product
+import devcamp.app.tokolelang.ui.listbid.ListBidActivity
 import devcamp.app.tokolelang.ui.login.LoginActivity
 import devcamp.app.tokolelang.ui.product.create.ProductCreateDialog
 import io.isfaaghyth.rak.Rak
@@ -40,6 +41,11 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
         presenter.getProducts()
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshProductsList()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -55,6 +61,9 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.mn_history -> {
+                startActivity(Intent(this, ListBidActivity::class.java))
+            }
             R.id.mn_refresh -> {
                 presenter.getProducts()
             }

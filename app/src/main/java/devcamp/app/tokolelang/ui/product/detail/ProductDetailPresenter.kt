@@ -26,4 +26,17 @@ class ProductDetailPresenter(view: ProductDetailView): BasePresenter<ProductDeta
                 }))
     }
 
+    fun postWinners(userId: String, productId: String, message: String, price: String) {
+        view().showLoading()
+        subscribe(routes.postBidWinner(userId, productId, message, price)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    res -> run {
+                    view().hideLoading()
+                    view().postWinnerSuccess(res)
+                }
+                }))
+    }
+
 }
