@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:id="@+id/imgProduct"
                 android:layout_marginTop="6dp"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
                 android:scaleType="centerCrop"
@@ -215,7 +215,8 @@
                 <Spinner
                     android:id="@+id/spinnerCondition"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"/>
 
             </LinearLayout>
 
@@ -239,7 +240,8 @@
                 <Spinner
                     android:id="@+id/spinnerCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"/>
 
             </LinearLayout>
 
@@ -287,15 +289,16 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnBid"
+            android:id="@+id/btnAddProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
             android:clickable="true"
             android:foreground="?selectableItemBackground"
-            android:text="@string/submit_bid"
+            android:text="@string/add_product"
             fontPath="fonts/OpenSans-SemiBold.ttf"
             android:textColor="@color/greenPrimaryPark"/>
 

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Tokolelang</string>
+
+    <string name="date_format">yyyy-MM-dd hh:mm:ss</string>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -28,4 +31,5 @@
     <string name="nextbid">Next Bid</string>
     <string name="timeexpired">Time Expired</string>
     <string name="select_action">Select Action</string>
+    <string name="add_product">Add Product</string>
 </resources>

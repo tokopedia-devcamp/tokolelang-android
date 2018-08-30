@@ -36,6 +36,10 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
         }
     }
 
+    fun refreshProductsList() {
+        presenter.getProducts()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
