@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import com.github.rahatarmanahmed.cpv.CircularProgressView
 import devcamp.app.tokolelang.BuildConfig
 import devcamp.app.tokolelang.utils.KeyboardUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -21,6 +23,7 @@ abstract class BaseActivity<P : BasePresenter<*>>: AppCompatActivity(), BaseView
     protected abstract fun initPresenter(): P
     protected abstract fun contentView(): Int
     protected abstract fun onCreated()
+    protected abstract fun loader(): CircularProgressView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +56,11 @@ abstract class BaseActivity<P : BasePresenter<*>>: AppCompatActivity(), BaseView
     }
 
     override fun showLoading() {
-        Log.d(BuildConfig.APPLICATION_ID, "Loading")
+        loader().visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        Log.d(BuildConfig.APPLICATION_ID, "Complete")
+        loader().visibility = View.GONE
     }
 
     override fun onError(message: String) {

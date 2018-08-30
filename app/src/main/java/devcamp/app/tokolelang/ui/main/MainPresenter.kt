@@ -14,11 +14,17 @@ class MainPresenter(view: MainView): BasePresenter<MainView>() {
     init { super.attachView(view) }
 
     fun getProducts() {
+        view().showLoading()
         subscribe(routes.getProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { res -> view().onGetProducts(res.data) },
+                        { res ->
+                            run {
+                                view().onGetProducts(res.data)
+                                view().hideLoading()
+                            }
+                        },
                         { err -> requestError(err) }
                 ))
     }

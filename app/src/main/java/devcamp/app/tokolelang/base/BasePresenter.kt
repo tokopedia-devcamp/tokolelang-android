@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.base
 
+import android.util.Log
 import devcamp.app.tokolelang.network.Network
 import devcamp.app.tokolelang.network.Routes
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +31,8 @@ open class BasePresenter<V: BaseView> : BasePresenterImp<V> {
     }
 
     fun requestError(error: Throwable?) {
-
+        view().hideLoading()
+        Log.d("TAG", error?.message)
     }
 
     override fun view(): V = mvpView

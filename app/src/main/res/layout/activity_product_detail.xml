@@ -30,7 +30,7 @@
                     android:id="@+id/imgProduct"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/placeholder"
                     android:scaleType="centerCrop"/>
 
                 <View
@@ -56,9 +56,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        fontPath="fonts/OpenSans-Light.ttf"
-                        android:textColor="@color/greyDark"
-                        android:layout_centerVertical="true"/>
+                        fontPath="fonts/OpenSans-SemiBold.ttf"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/semiBlack"/>
+
+                    <com.github.rahatarmanahmed.cpv.CircularProgressView
+                        android:id="@+id/progressBar"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:visibility="gone"
+                        app:cpv_animAutostart="true"
+                        app:cpv_indeterminate="true" />
 
                 </RelativeLayout>
 
@@ -76,7 +87,7 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:id="@+id/img_avatar"
+                    android:id="@+id/imgAvatar"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
@@ -89,7 +100,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txt_name"
+                        android:id="@+id/txtProductName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PT XL Axiata Tbk"
@@ -172,12 +183,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SELECT DATE"
+                        android:text="@string/current_bid"
                         android:textColor="@color/semiBlack"
-                        android:textSize="11sp"/>
+                        android:textSize="12sp"/>
 
                     <TextView
-                        android:id="@+id/txt_date"
+                        android:id="@+id/txtHighestBid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Oktober 2017"
@@ -195,13 +206,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="NOMINAL"
+                            android:text="@string/next_bid"
                             fontPath="fonts/OpenSans-Light.ttf"
                             android:textColor="@color/semiBlack"
-                            android:textSize="11sp"/>
+                            android:textSize="12sp"/>
 
                         <TextView
-                            android:id="@+id/txt_nominal"
+                            android:id="@+id/txtNextBid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="IDR 20.000"
@@ -220,13 +231,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="COMMITMENT"
+                            android:text="@string/minimum_price"
                             fontPath="fonts/OpenSans-Light.ttf"
                             android:textColor="@color/semiBlack"
-                            android:textSize="11sp"/>
+                            android:textSize="12sp"/>
 
                         <TextView
-                            android:id="@+id/txt_commitment"
+                            android:id="@+id/txtMinPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="IDR 70.000"
@@ -245,41 +256,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="DESCRIPTION"
+                            android:text="@string/bidder"
                             fontPath="fonts/OpenSans-Light.ttf"
                             android:textColor="@color/semiBlack"
-                            android:textSize="11sp"/>
+                            android:textSize="12sp"/>
 
-                        <TextView
-                            android:id="@+id/txt_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="desc"
-                            android:textColor="@color/semiBlack"
-                            android:layout_marginTop="5dp"
-                            android:textSize="16sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="20dp">
-
-                        <TextView
-                            android:id="@+id/txt_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="FOR: STT NURUL FIKRI"
-                            fontPath="fonts/OpenSans-Light.ttf"
-                            android:textColor="@color/semiBlack"
-                            android:textSize="11sp"/>
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/lstBiddger"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <include
+                                android:id="@+id/message"
+                                layout="@layout/layout_message"/>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/lstBiddger"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </RelativeLayout>
 
                     </LinearLayout>
 

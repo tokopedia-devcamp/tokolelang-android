@@ -1,5 +1,6 @@
 package devcamp.app.tokolelang.ui.product.create
 
+import com.github.rahatarmanahmed.cpv.CircularProgressView
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
 
@@ -11,9 +12,8 @@ class ProductCreateActivity: BaseActivity<ProductCreatePresenter>(), ProductCrea
 
     override fun initPresenter(): ProductCreatePresenter = ProductCreatePresenter(this)
     override fun contentView(): Int = R.layout.activity_product_new
+    override fun loader(): CircularProgressView = null!!
 
-    override fun onCreated() {
-
-    }
+    override fun onCreated() {}
 
 }
