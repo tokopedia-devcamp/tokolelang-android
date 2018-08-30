@@ -15,7 +15,7 @@ import android.support.design.widget.BottomSheetBehavior
 import android.widget.FrameLayout
 import android.support.design.widget.BottomSheetDialog
 import android.view.ViewTreeObserver
-
+import devcamp.app.tokolelang.data.model.Success
 
 
 /**
@@ -45,10 +45,11 @@ class BidCreateDialog : BaseDialog<BidCreatePresenter>(), BidCreateView {
 
     private fun onCreateBidClicked() = btnBid.setOnClickListener {
         progressBar.visibility = View.VISIBLE
-        Handler().postDelayed({ onBidSuccess() }, 3000)
+        val userId: Int = Rak.grab("userId")
+        presenter.postBid(userId.toString(), product.productId, edtAmountBid.text.toString())
     }
 
-    override fun onBidSuccess() {
+    override fun onBidSuccess(result: Success) {
         (activity as ProductDetailActivity).getBidder()
         dismiss()
     }

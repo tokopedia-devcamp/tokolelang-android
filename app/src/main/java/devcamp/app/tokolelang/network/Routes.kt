@@ -11,8 +11,10 @@ import retrofit2.http.*
 interface Routes {
 
     @FormUrlEncoded @POST("api/user/login")
-    fun postUserLogin(@Field("email") email: String,
-                      @Field("password") password: String): Single<UserRepository>
+    fun postUserLogin(
+            @Field("email") email: String,
+            @Field("password") password: String
+    ): Single<UserRepository>
 
     @GET("api/products")
     fun getProducts(): Single<DataRepository<Product>>
@@ -21,15 +23,26 @@ interface Routes {
     fun getProductCategory(): Single<DataRepository<Category>>
 
     @FormUrlEncoded @POST(("/api/products"))
-    fun postProduct(@Field("name") name: String,
-                    @Field("product_condition") productCondition: String,
-                    @Field("min_price") minPrice: String,
-                    @Field("next_bid") nextBid: String,
-                    @Field("expired") expired: String,
-                    @Field("product_category") productCategory: String,
-                    @Field("user_id") userId: String,
-                    @Field("encoded_image") encodedImage: String): Single<Success>
+    fun postProduct(
+            @Field("name") name: String,
+            @Field("product_condition") productCondition: String,
+            @Field("min_price") minPrice: String,
+            @Field("next_bid") nextBid: String,
+            @Field("expired") expired: String,
+            @Field("product_category") productCategory: String,
+            @Field("user_id") userId: String,
+            @Field("encoded_image") encodedImage: String
+    ): Single<Success>
 
     @GET("api/tr/productid/{id}")
-    fun getBidderByProductId(@Path("id") productId: String): Single<DataRepository<Bidder>>
+    fun getBidderByProductId(
+            @Path("id") productId: String
+    ): Single<DataRepository<Bidder>>
+
+    @FormUrlEncoded @POST("api/tr/postbid/")
+    fun postBidProject(
+            @Field("user_id") userId: String,
+            @Field("product_id") productId: String,
+            @Field("price") price: String
+    ): Single<Success>
 }
