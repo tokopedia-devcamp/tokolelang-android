@@ -36,4 +36,5 @@
     <string name="are_you_sure_bid">Are you sure you want to close this bid?</string>
     <string name="cancel_bid">Cancel My Bid</string>
     <string name="list_bid">List Bid</string>
+    <string name="other_products">OTHER PRODUCTS</string>
 </resources>

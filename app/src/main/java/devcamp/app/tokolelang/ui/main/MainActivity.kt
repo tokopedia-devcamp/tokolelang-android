@@ -3,6 +3,7 @@ package devcamp.app.tokolelang.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.github.rahatarmanahmed.cpv.CircularProgressView
@@ -13,9 +14,11 @@ import devcamp.app.tokolelang.data.model.Product
 import devcamp.app.tokolelang.ui.listbid.ListBidActivity
 import devcamp.app.tokolelang.ui.login.LoginActivity
 import devcamp.app.tokolelang.ui.product.create.ProductCreateDialog
+import devcamp.app.tokolelang.utils.StartSnapHelper
 import io.isfaaghyth.rak.Rak
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_main.view.*
+import java.util.ArrayList
 
 class MainActivity: BaseActivity<MainPresenter>(), MainView {
 
@@ -26,6 +29,7 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
     override fun onCreated() {
         setSupportActionBar(header.toolbar)
         lstProducts.layoutManager = GridLayoutManager(this, 2)
+        lstProducts.isNestedScrollingEnabled = false
         presenter.getProducts()
 
         btnAddProduct.setOnClickListener {
@@ -35,6 +39,18 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
             createBid.arguments = args
             createBid.show(supportFragmentManager, "Create")
         }
+    }
+
+    fun requestTopBid(products: List<Product>) {
+        val highLightMovies = ArrayList<Product>()
+        highLightMovies.add(products.get(0))
+        highLightMovies.add(products.get(1))
+        highLightMovies.add(products.get(2))
+        lstHighlight.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val snapHelper = StartSnapHelper()
+        snapHelper.attachToRecyclerView(lstHighlight)
+        val highlightAdapter = TopProductAdapter(highLightMovies)
+        lstHighlight.adapter = highlightAdapter
     }
 
     fun refreshProductsList() {
@@ -52,6 +68,7 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
 
     override fun onGetProducts(products: List<Product>) {
         lstProducts.adapter = ProductAdapter(products)
+        requestTopBid(products)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

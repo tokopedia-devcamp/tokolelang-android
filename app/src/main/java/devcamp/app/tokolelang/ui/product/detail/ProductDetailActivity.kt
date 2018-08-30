@@ -134,7 +134,7 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
                             userId.toString(),
                             product.productId,
                             "Selamat, anda menjadi top bid pada product ${product.name} dengan harga $finalPrice",
-                            finalPrice)
+                            finalPrice.replace("Rp.", "").replace(",","").trim())
                 } })
                 .show()
     }
