@@ -3,6 +3,7 @@ package devcamp.app.tokolelang.ui.main
 import android.support.v7.widget.GridLayoutManager
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
+import devcamp.app.tokolelang.data.model.Product
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 
@@ -13,9 +14,11 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
 
     override fun onCreated() {
         lstProducts.layoutManager = GridLayoutManager(this, 2)
-        lstProducts.adapter = ProductAdapter(presenter.getProduct())
+        presenter.getProducts()
     }
 
-    override fun success() {}
+    override fun onGetProducts(products: List<Product>) {
+        lstProducts.adapter = ProductAdapter(products)
+    }
 
 }

@@ -38,7 +38,7 @@ object Network {
                 .create()
 
         return Retrofit.Builder()
-                .baseUrl("http://localhost/")
+                .baseUrl("http://devcamp3.000webhostapp.com/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

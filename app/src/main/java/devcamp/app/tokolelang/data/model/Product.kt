@@ -5,8 +5,14 @@ package devcamp.app.tokolelang.data.model
  * github: @isfaaghyth
  */
 class Product(
-        val productName: String,
-        val price: String,
+        val productId: String,
+        val imageurl: String,
+        val name: String,
+        val productCondition: String,
+        val minPrice: String,
+        val nextBid: String,
         val expired: String,
-        val person: String
+        val category: String,
+        val sellerId: String,
+        val sellerName: String
 )

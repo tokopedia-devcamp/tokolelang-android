@@ -12,8 +12,8 @@ import io.reactivex.disposables.Disposable
 open class BasePresenter<V: BaseView> : BasePresenterImp<V> {
 
     private lateinit var mvpView : V
-    private lateinit var routes : Routes
     private lateinit var composite : CompositeDisposable
+    protected lateinit var routes : Routes
 
     override fun attachView(view: V) {
         mvpView = view
@@ -21,11 +21,16 @@ open class BasePresenter<V: BaseView> : BasePresenterImp<V> {
     }
 
     override fun subscribe(disposable: Disposable?) {
+        composite = CompositeDisposable()
         composite.add(disposable)
     }
 
     override fun dettachView() {
         if (composite.isDisposed) composite.clear()
+    }
+
+    fun requestError(error: Throwable?) {
+
     }
 
     override fun view(): V = mvpView
