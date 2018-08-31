@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import devcamp.app.tokolelang.R
@@ -29,15 +30,14 @@ class TopProductAdapter(val products: List<Product>) : RecyclerView.Adapter<TopP
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
-        val card = LayoutInflater.from(parent?.getContext()).inflate(R.layout.item_top_product, parent, false)
-        val cardRoot: CardView = card.findViewById(R.id.itemTopProduct)
+        val card = LayoutInflater.from(parent?.context).inflate(R.layout.item_top_product, parent, false)
+        val cardRoot: RelativeLayout = card.findViewById(R.id.itemTopProduct)
         val displayMetrics = Resources.getSystem().displayMetrics
         val width = displayMetrics.widthPixels
         val params = cardRoot.layoutParams
-        params.width = ((width * 90) / 100)
+        params.width = ((width * 80) / 100)
         cardRoot.layoutParams = params
         return Holder(card)
-        //return Holder(LayoutInflater.from(parent?.context).inflate(R.layout.item_top_product, parent, false))
     }
 
 

@@ -9,7 +9,6 @@ import com.github.rahatarmanahmed.cpv.CircularProgressView
 import com.google.gson.Gson
 import devcamp.app.tokolelang.R
 import devcamp.app.tokolelang.base.BaseActivity
-import devcamp.app.tokolelang.data.model.Product
 import devcamp.app.tokolelang.utils.ExpiredView
 import devcamp.app.tokolelang.utils.RemainingDays
 import devcamp.app.tokolelang.utils.RupiahConverter
@@ -22,9 +21,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import devcamp.app.tokolelang.data.model.Bidder
-import devcamp.app.tokolelang.data.model.DataRepository
-import devcamp.app.tokolelang.data.model.Success
+import devcamp.app.tokolelang.data.model.*
 import io.isfaaghyth.rak.Rak
 import kotlinx.android.synthetic.main.layout_message.*
 
@@ -40,6 +37,7 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
     override fun loader(): CircularProgressView = progressBar
 
     private lateinit var product: Product
+    private lateinit var bidder: BidderUser
 
     override fun onCreated() {
         btnRefreshBidderList.setOnClickListener { getBidder() }
@@ -58,6 +56,7 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
             200 -> {
                 txtHighestBid.text = RupiahConverter.convert(result.data[0].price.toDouble())
                 lstBiddger.adapter = BidderAdapter(result.data)
+                bidder = result.data[0].bidder
                 txtBidderCount.text = getString(R.string.bidder)
             }
             400 -> {
@@ -131,7 +130,7 @@ class ProductDetailActivity: BaseActivity<ProductDetailPresenter>(), ProductDeta
                     val userId: Int = Rak.grab("userId")
                     val finalPrice = txtHighestBid.text.toString()
                     presenter.postWinners(
-                            userId.toString(),
+                            bidder.userId.toString(),
                             product.productId,
                             "Selamat, anda menjadi top bid pada product ${product.name} dengan harga $finalPrice",
                             finalPrice.replace("Rp.", "").replace(",","").trim())

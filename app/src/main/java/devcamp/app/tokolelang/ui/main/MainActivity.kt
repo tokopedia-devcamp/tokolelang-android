@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.github.rahatarmanahmed.cpv.CircularProgressView
 import com.google.gson.Gson
 import devcamp.app.tokolelang.R
@@ -28,6 +30,7 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
 
     override fun onCreated() {
         setSupportActionBar(header.toolbar)
+        lstHighlight.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         lstProducts.layoutManager = GridLayoutManager(this, 2)
         lstProducts.isNestedScrollingEnabled = false
         presenter.getProducts()
@@ -42,15 +45,16 @@ class MainActivity: BaseActivity<MainPresenter>(), MainView {
     }
 
     fun requestTopBid(products: List<Product>) {
-        val highLightMovies = ArrayList<Product>()
-        highLightMovies.add(products.get(0))
-        highLightMovies.add(products.get(1))
-        highLightMovies.add(products.get(2))
-        lstHighlight.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val snapHelper = StartSnapHelper()
-        snapHelper.attachToRecyclerView(lstHighlight)
-        val highlightAdapter = TopProductAdapter(highLightMovies)
-        lstHighlight.adapter = highlightAdapter
+        titleProducts.visibility = View.VISIBLE
+        if (products.isNotEmpty()) {
+            val highLightMovies = ArrayList<Product>()
+            highLightMovies.add(products[1])
+            highLightMovies.add(products[2])
+            val snapHelper = LinearSnapHelper()
+            lstHighlight.onFlingListener = null
+            snapHelper.attachToRecyclerView(lstHighlight)
+            lstHighlight.adapter = TopProductAdapter(highLightMovies)
+        }
     }
 
     fun refreshProductsList() {

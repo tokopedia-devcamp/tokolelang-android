@@ -17,9 +17,7 @@ public class StartSnapHelper extends LinearSnapHelper {
 
     private OrientationHelper mVerticalHelper, mHorizontalHelper;
 
-    public StartSnapHelper() {
-
-    }
+    public StartSnapHelper() {}
 
     @Override
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView)
